@@ -4,6 +4,9 @@ header#title-block-header > h1.title {
     text-align: center
 }
 
+h1:not(:first-of-type) {
+    page-break-before: always;
+}
 
 body {
     font-family: Helvetica, arial, sans-serif;
