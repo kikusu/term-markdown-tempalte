@@ -9,10 +9,10 @@
         $(element).attr("chapter", idx);
         $(element).prepend("第" + idx + "章 ");
     });
-
-    let chapter = 0;
-    let sub_chapter = 0;
-    let section = 0;
+    //
+    var chapter = 0;
+    var sub_chapter = 0;
+    var section = 0;
 
     $("h1.chapter, h2.sub-chapter").each(function (idx, element) {
         if (element.tagName === "H1") {
@@ -46,11 +46,5 @@
             $(element).prepend("第" + section + "条 ");
         }
     });
-
-    $("a").each(function (idx, element) {
-        let query = $(this).text();
-        console.log(query);
-    });
-
 
 </script>
