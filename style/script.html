@@ -23,7 +23,6 @@
             section_idx = 0;
 
             title = $(element).text();
-            console.info(title, "hoge")
         } else if (element.tagName === "H2") {
             sub_chapter_idx = 0;
 
@@ -85,5 +84,41 @@
         }
     });
 
+    $("a[href='']").each(function(i, element) {
+        var q = $(element).text();
+
+        var target = $("#" + q);
+
+        console.info(target);
+
+        if(target[0]){
+
+            var title = target.attr("title");
+            var chapter_idx = target.attr("chapter-idx");
+            var sub_chapter_idx = target.attr("sub-chapter-idx");
+            var section_idx = target.attr("section-idx");
+
+            console.info(title, chapter_idx, sub_chapter_idx, section_idx);
+
+
+            var link_text = title;
+            if(chapter_idx){
+                link_text = link_text + "第 " + chapter_idx + " 章";
+            }
+            if(sub_chapter_idx){
+                link_text = link_text + "第 " + sub_chapter_idx + " 節";
+            }
+            if(section_idx){
+                link_text = link_text + "第 " + section_idx + " 条";
+            }
+            $(element).text(link_text);
+            $(element).attr("href", "#" + q);
+        }
+        else{
+            console.info("Inline Link #" + q + " not found.")
+        }
+
+    });
 </script>
+
 
