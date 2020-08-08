@@ -1,0 +1,56 @@
+<script type="text/javascript">
+
+    $("h1").not("header > h1.title").addClass("chapter");
+    $("h2").addClass("sub-chapter");
+    $("h3").addClass("section");
+
+    $("h1.chapter").each(function (idx, element) {
+        idx = idx + 1;
+        $(element).attr("chapter", idx);
+        $(element).prepend("第" + idx + "章 ");
+    });
+
+    let chapter = 0;
+    let sub_chapter = 0;
+    let section = 0;
+
+    $("h1.chapter, h2.sub-chapter").each(function (idx, element) {
+        if (element.tagName === "H1") {
+            sub_chapter = 0;
+            chapter = $(element).attr("section")
+        } else {
+            sub_chapter = sub_chapter + 1;
+            $(element).attr("section", chapter);
+            $(element).attr("sub-chapter", sub_chapter);
+            $(element).prepend("第" + sub_chapter + "節 ");
+        }
+    });
+
+    $("h1.chapter, h2.sub-chapter, h3.section").each(function (idx, element) {
+        if (element.tagName === "H1") {
+            sub_chapter = 0;
+            chapter = $(element).attr("chapter")
+        } else if (element.tagName === "H2") {
+            sub_chapter = $(element).attr("sub-chapter")
+        } else {
+            section = section + 1;
+
+            if(chapter > 0){
+                $(element).attr("chapter", chapter);
+            }
+            if(sub_chapter > 0){
+                $(element).attr("sub_chapter", sub_chapter);
+            }
+
+            $(element).attr("section", section);
+            $(element).prepend("第" + section + "条 ");
+        }
+    });
+
+    $("a").each(function (idx, element) {
+        let query = $(this).text();
+        console.log(query);
+    });
+
+
+</script>
